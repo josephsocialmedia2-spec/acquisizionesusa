@@ -1,0 +1,28 @@
+name: Sync Radar Edilizio into Territory System
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sync-radar-edilizio.yml']
+  schedule:
+    - cron: '20 6,12,17 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scarica feed Radar Edilizio
+        run: |
+          mkdir -p data
+          curl -fsSL --retry 3 "https://josephsocialmedia2-spec.github.io/launcher-dashboard/data/radar_edilizio.json?ts=$(date +%s)" -o data/radar_edilizio.json
+          python -m json.tool data/radar_edilizio.json >/dev/null
+      - name: Aggiorna repository territoriale
+        run: |
+          git config user.name "f1-territory-sync"
+          git config user.email "f1-territory-sync@users.noreply.github.com"
+          git add data/radar_edilizio.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Sync Radar Edilizio territory feed"
+          git push
