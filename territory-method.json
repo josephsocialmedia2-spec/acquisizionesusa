@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "name": "F1 Territory Acquisition System",
+  "principle": "TERRITORY → DATA → RELATIONSHIP → OPPORTUNITY",
+  "pipeline": ["TERRITORIO","SEGNALE","NOTIZIA","PROSPECT","QUALIFICAZIONE","FOLLOW-UP","APPUNTAMENTO","VALUTAZIONE","INCARICO","RELAZIONE"],
+  "levels": {
+    "N0": "INFORMAZIONE — nessuna esigenza verificata",
+    "N1": "SEGNALE — possibile evento immobiliare da verificare",
+    "N2": "PROSPECT — identificata persona potenzialmente interessata",
+    "N3": "PROSPECT QUALIFICATO — esigenza manifestata personalmente",
+    "N4": "VALUTAZIONE — disponibile a discutere il valore",
+    "N5": "OPPORTUNITÀ — condizioni concrete per proporre incarico",
+    "N6": "INCARICO — acquisizione formalizzata"
+  },
+  "reliability": {
+    "F1": "BASSA — voce non verificata",
+    "F2": "MEDIA — persona apparentemente informata",
+    "F3": "ALTA — conferma da più fonti indipendenti",
+    "F4": "DIRETTA — proprietario/interessato"
+  },
+  "source_types": ["OSSERVAZIONE","INFORMAZIONE_INDIRETTA","INFORMAZIONE_DIRETTA","FATTO_DOCUMENTATO"],
+  "priorities": {
+    "HOT": "esigenza attuale o valutazione richiesta",
+    "WARM": "possibile esigenza futura concreta",
+    "COLD": "relazione da mantenere senza urgenza",
+    "INFORMATION_ONLY": "nessuna azione commerciale prevista"
+  },
+  "field_actions": ["OSSERVAZIONE","CITOFONO","PORTA_A_PORTA","CARTELLO","CANTIERE","ATTIVITA_LOCALE","PROFESSIONISTA"],
+  "call_order": ["RICHIAMI_CONCORDATI","HOT","WARM","NUOVI_PROSPECT","ANNUNCI_PRIVATI","VECCHIE_VALUTAZIONI","DATABASE_STORICO","ADDETTI_AI_LAVORI_RADAR_EDILIZIO"],
+  "call_outcomes": ["NON_INTERESSATO","NON_ORA","RICHIAMAMI","NON_CONTATTARMI","FOLLOW_UP","APPUNTAMENTO","VALUTAZIONE"],
+  "mandatory_record_fields": ["data","operatore","comune","via","civico","palazzo","tipo_attivita","fonte","informazione","livello","attendibilita","contatto_diretto","note","azione_successiva","data_followup","stato"],
+  "forbidden": [
+    "inventare informazioni",
+    "fingersi cliente",
+    "dichiarare richieste inesistenti",
+    "acquisire dati personali con inganno",
+    "insistere dopo un rifiuto chiaro",
+    "registrare pettegolezzi come fatti",
+    "attribuire motivazioni non confermate",
+    "classificare un immobile come in vendita senza prova",
+    "affermare che un incarico concorrente è scaduto senza verifica",
+    "svolgere attività professionali riservate senza requisiti"
+  ],
+  "territory_exclusions": ["Sant'Ambrogio di Torino"],
+  "rules": {
+    "source": "Ogni informazione importante deve rispondere a COME LO SAPPIAMO?",
+    "capture": "CIÒ CHE NON È REGISTRATO NON ESISTE",
+    "phone": "Prima di chiamare mostra CHI, PERCHÉ, FONTE, OBIETTIVO e ULTIMA INTERAZIONE",
+    "indirect": "Una risposta indiretta resta NOTIZIA; solo il contatto con l'interessato può diventare PROSPECT",
+    "truth": "Non dichiarare un cliente interessato a uno specifico immobile se non esiste una richiesta compatibile reale"
+  }
+}
