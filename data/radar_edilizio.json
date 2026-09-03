@@ -4,7 +4,7 @@
     "generated_at": "2026-09-01T09:30:00+02:00",
     "status": "IN_POPOLAMENTO",
     "privacy": "Solo recapiti professionali/aziendali pubblici; nessun recapito personale di proprietari privati.",
-    "last_automatic_scan_utc": "2026-09-03T13:24:44.055587+00:00",
+    "last_automatic_scan_utc": "2026-09-02T12:08:07.409628+00:00",
     "last_scan_new_records": 0,
     "scanner_version": 4,
     "history_seed_verified_at": "2026-09-02",
@@ -12,7 +12,7 @@
     "geography_logic": "SELLER_RADAR_SUSA_20KM",
     "center": "Susa",
     "max_radius_km": 20.0,
-    "territory_sync_pruned_records": 6
+    "territory_sync_pruned_records": 5
   },
   "opportunities": [
     {
