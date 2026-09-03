@@ -1,29 +1,22 @@
-name: Deploy F1 Territory Acquisition System
+name: Publish F1 Territory Acquisition System
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 concurrency:
-  group: pages
+  group: publish-gh-pages
   cancel-in-progress: true
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          fetch-depth: 0
+      - name: Aggiorna gh-pages
+        run: |
+          git config user.name "f1-territory-pages"
+          git config user.email "f1-territory-pages@users.noreply.github.com"
+          git push origin HEAD:gh-pages --force
